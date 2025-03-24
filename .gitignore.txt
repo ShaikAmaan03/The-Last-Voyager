@@ -1,0 +1,9 @@
+*.import
+.export/
+.sconsign.dblite
+godot.settings
+*.mono/
+*.cache/
+mono/
+bin/
+obj/

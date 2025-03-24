@@ -1,0 +1,158 @@
+[gd_scene load_steps=15 format=3 uid="uid://b3nmphwesuyap"]
+
+[ext_resource type="Script" path="res://main_menuscene.gd" id="1_avpjv"]
+[ext_resource type="Texture2D" uid="uid://dvet3dywgoo0x" path="res://Space1.png" id="1_pwn3c"]
+[ext_resource type="Texture2D" uid="uid://rbb1ubm5vbpd" path="res://Start_BTN.png" id="2_ngfbq"]
+[ext_resource type="Texture2D" uid="uid://dyq04pnq2f1c2" path="res://Exit_BTN.png" id="3_twod8"]
+[ext_resource type="Texture2D" uid="uid://dm88f8p323n2l" path="res://GIGJ2025.jpg" id="5_4nkoo"]
+[ext_resource type="Texture2D" uid="uid://butp7k8dsbrn3" path="res://Lvgr-removebg-preview.png" id="5_gni62"]
+[ext_resource type="Texture2D" uid="uid://dh71s6ig347yo" path="res://Rating_BTN.png" id="6_5rnil"]
+[ext_resource type="FontFile" uid="uid://bfpopxhv6prlu" path="res://Transformers Movie.ttf" id="6_7kb35"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dm4aa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iofep"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wqisx"]
+
+[sub_resource type="Animation" id="Animation_01etf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_i3rw5"]
+resource_name = "new_animation"
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tenwf"]
+_data = {
+"RESET": SubResource("Animation_01etf"),
+"new_animation": SubResource("Animation_i3rw5")
+}
+
+[node name="MainMenuscene" type="Node2D"]
+script = ExtResource("1_avpjv")
+
+[node name="Space1" type="Sprite2D" parent="."]
+position = Vector2(572, 323)
+scale = Vector2(0.62, 0.62)
+texture = ExtResource("1_pwn3c")
+
+[node name="btns" type="Node2D" parent="."]
+
+[node name="Start" type="Button" parent="btns"]
+offset_left = 456.0
+offset_top = 252.0
+offset_right = 874.0
+offset_bottom = 381.0
+scale = Vector2(0.5, 0.5)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dm4aa")
+icon = ExtResource("2_ngfbq")
+flat = true
+
+[node name="Exit" type="Button" parent="btns"]
+offset_left = 455.0
+offset_top = 330.0
+offset_right = 873.0
+offset_bottom = 459.0
+scale = Vector2(0.5, 0.5)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iofep")
+icon = ExtResource("3_twod8")
+flat = true
+
+[node name="Lvgr-removebg-preview" type="Sprite2D" parent="btns"]
+position = Vector2(556, 118)
+texture = ExtResource("5_gni62")
+
+[node name="Lorebtn" type="Button" parent="btns"]
+offset_left = 1057.0
+offset_top = 341.0
+offset_right = 1275.0
+offset_bottom = 559.0
+scale = Vector2(0.2, 0.2)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wqisx")
+icon = ExtResource("6_5rnil")
+flat = true
+
+[node name="Label" type="Label" parent="btns"]
+offset_left = 1064.0
+offset_top = 389.0
+offset_right = 1104.0
+offset_bottom = 412.0
+theme_override_fonts/font = ExtResource("6_7kb35")
+text = "Lore"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tenwf")
+}
+autoplay = "new_animation"
+
+[node name="ColorRect" type="ColorRect" parent="AnimationPlayer"]
+offset_left = -11.0
+offset_top = -13.0
+offset_right = 1187.0
+offset_bottom = 659.0
+color = Color(0, 0, 0, 1)
+
+[node name="Gigj2025" type="Sprite2D" parent="."]
+position = Vector2(559, 481)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("5_4nkoo")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 269.0
+offset_top = 558.0
+offset_right = 859.0
+offset_bottom = 581.0
+theme_override_fonts/font = ExtResource("6_7kb35")
+text = "Made with Love for the Godot India Community Game Jam 2025 in 48 hours"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 216.0
+offset_top = 575.0
+offset_right = 988.0
+offset_bottom = 619.0
+theme_override_fonts/font = ExtResource("6_7kb35")
+text = "Programmed, Designed and Developed by Shaik Amaan, All of the Assets used in the game are officially licensed by Craftpix.net & a special thanks to Kenney.nl"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 215.0
+offset_top = 610.0
+offset_right = 987.0
+offset_bottom = 654.0
+theme_override_fonts/font = ExtResource("6_7kb35")
+text = "Music by - Clavier (Pixabay.com)"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="btns/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="btns/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="btns/Lorebtn" to="." method="_on_lorebtn_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

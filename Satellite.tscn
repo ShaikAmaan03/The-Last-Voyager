@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://4g4bwslekjtv"]
+
+[ext_resource type="Script" path="res://satellite.gd" id="1_hyxqt"]
+[ext_resource type="Texture2D" uid="uid://bj38rvgdxnudn" path="res://Retina/station_C.png" id="1_nyik6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rstw"]
+size = Vector2(113.32, 111)
+
+[sub_resource type="Animation" id="Animation_aphmq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ahag3"]
+resource_name = "new_animation"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qtgqf"]
+_data = {
+"RESET": SubResource("Animation_aphmq"),
+"new_animation": SubResource("Animation_ahag3")
+}
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_hyxqt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.960406, -1.01206)
+rotation = 0.759218
+shape = SubResource("RectangleShape2D_6rstw")
+
+[node name="StationC" type="Sprite2D" parent="."]
+texture = ExtResource("1_nyik6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qtgqf")
+}
+autoplay = "new_animation"
+speed_scale = 0.2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

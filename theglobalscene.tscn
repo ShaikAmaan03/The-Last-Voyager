@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb2im8aaigqnw"]
+
+[ext_resource type="AudioStream" uid="uid://cvxi8mt15vw8" path="res://SFX/calm-space-music-312291.mp3" id="1_dckmb"]
+[ext_resource type="Script" path="res://Theglobalscript.gd" id="1_xe35d"]
+
+[node name="Theglobalscene" type="Node"]
+process_mode = 3
+script = ExtResource("1_xe35d")
+music = ExtResource("1_dckmb")
+
+[node name="Timer" type="Timer" parent="."]
+process_mode = 3
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
