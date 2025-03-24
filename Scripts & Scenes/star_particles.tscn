@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkrsde2arvnlv"]
+
+[ext_resource type="Texture2D" uid="uid://birl32axfr60h" path="res://Resources/Retina/star_medium.png" id="1_0mlb2"]
+[ext_resource type="Script" path="res://Scripts & Scenes/star_particles.gd" id="2_eh5pe"]
+
+[sub_resource type="Gradient" id="Gradient_sautp"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pk40h"]
+gradient = SubResource("Gradient_sautp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_da8gj"]
+lifetime_randomness = 1.0
+emission_shape_scale = Vector3(2, 2, 1)
+emission_shape = 3
+emission_box_extents = Vector3(600, 800, 1)
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+scale_min = 0.07
+scale_max = 0.1
+color_ramp = SubResource("GradientTexture1D_pk40h")
+
+[node name="starParticles" type="GPUParticles2D"]
+position = Vector2(630, 302)
+amount = 1000
+process_material = SubResource("ParticleProcessMaterial_da8gj")
+texture = ExtResource("1_0mlb2")
+lifetime = 7.0
+fixed_fps = 60
+script = ExtResource("2_eh5pe")

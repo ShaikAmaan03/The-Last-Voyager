@@ -11,15 +11,15 @@ config_version=5
 [application]
 
 config/name="The Last Voyager"
-run/main_scene="res://studiologo.tscn"
+run/main_scene="res://Scripts & Scenes/studiologo.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-config/icon="res://Lvgr-removebg-preview.png"
+config/icon="res://Scripts & Scenes/Lvgr-removebg-preview.png"
 
 [autoload]
 
-Theglobalscene="*res://theglobalscene.tscn"
-Music="*res://Music.tscn"
+Theglobalscene="*res://Scripts & Scenes/theglobalscene.tscn"
+Music="*res://Scripts & Scenes/Music.tscn"
 
 [display]
 

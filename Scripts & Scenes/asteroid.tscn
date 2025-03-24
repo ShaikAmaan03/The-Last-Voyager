@@ -1,0 +1,97 @@
+[gd_scene load_steps=7 format=3 uid="uid://ch70oarjkriag"]
+
+[ext_resource type="Texture2D" uid="uid://bl3xwylycun0i" path="res://Resources/Retina/ship_B.png" id="1_4mbmw"]
+[ext_resource type="Script" path="res://Scripts & Scenes/asteroid.gd" id="1_p8e3n"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rldvx"]
+height = 66.0
+
+[sub_resource type="Animation" id="Animation_6yt34"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_12ibt"]
+resource_name = "new_animation"
+length = 15.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 1000)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yms6s"]
+_data = {
+"RESET": SubResource("Animation_6yt34"),
+"new_animation": SubResource("Animation_12ibt")
+}
+
+[node name="Asteroid" type="Node2D" groups=["Enemies"]]
+rotation = 0.785398
+script = ExtResource("1_p8e3n")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 3.14159
+shape = SubResource("CapsuleShape2D_rldvx")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Area2D"]
+position = Vector2(0, -31)
+amount = 14
+lifetime = 0.5
+emission_shape = 2
+emission_sphere_radius = 1.0
+direction = Vector2(1.685, 0)
+gravity = Vector2(0, -25)
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="Area2D"]
+position = Vector2(-10, 9)
+amount = 14
+lifetime = 0.5
+emission_shape = 2
+emission_sphere_radius = 1.0
+direction = Vector2(1.685, 0)
+gravity = Vector2(0, -25)
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="Area2D"]
+position = Vector2(12, 6)
+amount = 14
+lifetime = 0.5
+emission_shape = 2
+emission_sphere_radius = 1.0
+direction = Vector2(1.685, 0)
+gravity = Vector2(0, -25)
+
+[node name="ShipB" type="Sprite2D" parent="Area2D"]
+rotation = -3.14159
+texture = ExtResource("1_4mbmw")
+flip_v = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yms6s")
+}
+autoplay = "new_animation"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

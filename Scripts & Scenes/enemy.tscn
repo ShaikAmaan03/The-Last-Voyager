@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://gauhvgdmna7w"]
+
+[ext_resource type="Script" path="res://Scripts & Scenes/enemy.gd" id="1_expdm"]
+[ext_resource type="Texture2D" uid="uid://cfakrdjw4vmir" path="res://Resources/Retina/meteor_detailedLarge.png" id="2_w6s28"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_epuq4"]
+radius = 44.0454
+
+[sub_resource type="Animation" id="Animation_85v73"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeteorDetailedLarge:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_unlcq"]
+resource_name = "new_animation"
+length = 10.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeteorDetailedLarge:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c3oie"]
+_data = {
+"RESET": SubResource("Animation_85v73"),
+"new_animation": SubResource("Animation_unlcq")
+}
+
+[node name="Enemy" type="Area2D" groups=["Enemies"]]
+collision_layer = 2
+script = ExtResource("1_expdm")
+
+[node name="MeteorDetailedLarge" type="Sprite2D" parent="."]
+texture = ExtResource("2_w6s28")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_epuq4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c3oie")
+}
+autoplay = "new_animation"
+speed_scale = 0.4
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

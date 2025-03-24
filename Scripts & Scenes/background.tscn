@@ -1,0 +1,85 @@
+[gd_scene load_steps=18 format=3 uid="uid://c52yjhfggtm0k"]
+
+[ext_resource type="Script" path="res://Scripts & Scenes/background.gd" id="1_nkau0"]
+[ext_resource type="PackedScene" uid="uid://sj42c366uw1o" path="res://Scripts & Scenes/player.tscn" id="2_vx11j"]
+[ext_resource type="PackedScene" uid="uid://ch70oarjkriag" path="res://Scripts & Scenes/asteroid.tscn" id="3_qc1yr"]
+[ext_resource type="PackedScene" uid="uid://gauhvgdmna7w" path="res://Scripts & Scenes/enemy.tscn" id="4_amxyp"]
+[ext_resource type="PackedScene" uid="uid://8hnefrnpeltg" path="res://Scripts & Scenes/enemysmall.tscn" id="5_fjy8j"]
+[ext_resource type="PackedScene" uid="uid://bvad1gyvbxvke" path="res://Scripts & Scenes/enemysqaure.tscn" id="6_36xta"]
+[ext_resource type="PackedScene" uid="uid://da3npkfv71w77" path="res://Scripts & Scenes/enemysquarel.tscn" id="7_libqu"]
+[ext_resource type="PackedScene" uid="uid://dv20n7445mtg7" path="res://Scripts & Scenes/spacestation.tscn" id="8_se02m"]
+[ext_resource type="PackedScene" uid="uid://4g4bwslekjtv" path="res://Scripts & Scenes/Satellite.tscn" id="9_vof5i"]
+[ext_resource type="Texture2D" uid="uid://b3smi26g7u5bv" path="res://Resources/BTNS'/pause.png" id="10_jgswn"]
+[ext_resource type="Texture2D" uid="uid://c8lsq4kkvmqtf" path="res://Resources/BTNS'/right.png" id="11_gmjx3"]
+[ext_resource type="Texture2D" uid="uid://drmfm5me5j0s" path="res://Resources/BTNS'/return.png" id="12_r7nih"]
+[ext_resource type="Texture2D" uid="uid://i4bnj2rgwo8" path="res://Resources/BTNS'/exitRight.png" id="13_dm6ny"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uyp6x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dx7l8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1e07y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mv2qk"]
+
+[node name="Background" type="Node2D"]
+script = ExtResource("1_nkau0")
+player_scene = ExtResource("2_vx11j")
+enemy_scenes = Array[PackedScene]([ExtResource("4_amxyp"), ExtResource("5_fjy8j"), ExtResource("6_36xta"), ExtResource("7_libqu"), ExtResource("9_vof5i"), ExtResource("8_se02m"), ExtResource("3_qc1yr")])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Pause" type="Button" parent="CanvasLayer/Control"]
+process_mode = 3
+layout_mode = 0
+offset_left = 1066.0
+offset_top = 15.0
+offset_right = 1174.0
+offset_bottom = 123.0
+scale = Vector2(0.6, 0.6)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uyp6x")
+icon = ExtResource("10_jgswn")
+
+[node name="Resume" type="Button" parent="CanvasLayer/Control"]
+process_mode = 3
+layout_mode = 0
+offset_left = 1067.0
+offset_top = 18.0
+offset_right = 1175.0
+offset_bottom = 126.0
+scale = Vector2(0.6, 0.6)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dx7l8")
+icon = ExtResource("11_gmjx3")
+
+[node name="Restart" type="Button" parent="CanvasLayer/Control"]
+process_mode = 3
+layout_mode = 0
+offset_left = 1066.0
+offset_top = 99.0
+offset_right = 1174.0
+offset_bottom = 207.0
+scale = Vector2(0.6, 0.6)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1e07y")
+icon = ExtResource("12_r7nih")
+
+[node name="Exit" type="Button" parent="CanvasLayer/Control"]
+process_mode = 3
+layout_mode = 0
+offset_left = 1068.0
+offset_top = 183.0
+offset_right = 1176.0
+offset_bottom = 291.0
+scale = Vector2(0.6, 0.6)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mv2qk")
+icon = ExtResource("13_dm6ny")
+
+[connection signal="pressed" from="CanvasLayer/Control/Pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Exit" to="." method="_on_exit_pressed"]
